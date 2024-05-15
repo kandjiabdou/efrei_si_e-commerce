@@ -53,7 +53,7 @@ function getAllProducts() {
                 let productBox = `<div class="box">
                     <a href="javascript:void(0)">
                         <div class="img-box">
-                        <img src="../assets/${pr.product_picture}" alt="">
+                        <img src="../assets/product/${pr.product_picture}" alt="">
                         </div>
                         <div class="detail-box">
                         <h6>

@@ -4,7 +4,7 @@ $("form").submit(event => {
     // Je récupère les données du formulaire
     fd.append("name", $("#Nom").val());
     fd.append("desc", $("#description").val());
-    if($('#image')[0].files.length > 0) fd.append("image", $('#image')[0].files[0]);
+    if ($('#image')[0].files.length > 0) fd.append("image", $('#image')[0].files[0]);
     fd.append("quantite", $("#quantite").val());
     fd.append("prix", $("#prix").val());
     fd.append("reduction", $("#reduction").val());
@@ -17,7 +17,6 @@ $("form").submit(event => {
 
 function insertArticle(fd) {
     fd.append("choisir", "insert");
-
     $.ajax({
         url: "../../php/admin_products.php",
         type: "POST",
@@ -27,11 +26,18 @@ function insertArticle(fd) {
         processData: false,
         cache: false,
         success: (res) => {
-            window.location.replace("../index.php"); // Si success alors je rédirige vers la liste des produits 
-            // else alert(res.error);
+            console.log("reponse : ", res);
+            if (typeof res === 'string') {
+                res = JSON.parse(res);
+            }
+            if (res.success) {
+                alert("Le produit est ajouté avec susces.")
+                window.location.replace("./"); // Si success alors je rédirige vers la liste des produits 
+            } else alert(res.error);
         },
         error: function (xhr, ajaxOptions, thrownError) {
-            console.log("what is the problem", thrownError)
+            console.log("what is the problem", thrownError);
+            alert(thrownError);
         }
     });
 }
@@ -47,7 +53,7 @@ function getProduct(id) {
         },
         success: (res) => {
             console.log(res);
-            $('#picture').attr('src', "/project_e_commerce/assets/product/"+res.product.product_picture);
+            $('#picture').attr('src', "/project_e_commerce/assets/product/" + res.product.product_picture);
             $("#Nom").val(res.product.product_name);
             $("#description").val(res.product.description);
             $("#quantite").val(res.product.product_quantity);
@@ -96,7 +102,7 @@ function getAllCategory() {
 
         cache: false,
         success: (res) => {
-            console.log("list cat : ",res);
+            console.log("list cat : ", res);
             $.each(res.categories, function (cat) {
                 $('#categorie')
                     .append($("<option></option>")
@@ -121,7 +127,7 @@ function getAllCategory() {
 getAllCategory();
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get("id"); // Je récupère l'id du produit à modifier dans l'url
-console.log("id du produit :",id);
+console.log("id du produit :", id);
 if (id) {
     $.ajax({
         url: "../../../php/admin/article.php",

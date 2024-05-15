@@ -11,7 +11,6 @@ function addToCart(product) {
     if (!product.hasOwnProperty('quantity')) {
         product.quantity = 1;
     }
-
     let existingProduct = null;
     for (let i = 0; i < productCart.length; i++) {
         if (productCart[i].id_product === product.id_product) {
@@ -20,20 +19,16 @@ function addToCart(product) {
         }
     }
     console.log(existingProduct)
-
     if (existingProduct) {
         existingProduct.quantity += 1;
     } else {
         productCart.push(product);
     }
-
     document.getElementById('cart-badge').innerHTML = productCart.length.toString();
-
     localStorage.setItem("productCart", JSON.stringify(productCart));
 }
 
 function getAllProducts() {
-
     $.ajax({
         url: "../php/admin_products.php",
         type: "GET",
@@ -48,9 +43,9 @@ function getAllProducts() {
             for (let i = 0; i < res.products.length; i++) {
                 let pr = res.products[i];
                 let productBox = `<div class="box">
-                    <a href="javascript:void(0)">
+                    <a href="product.php?id=${pr.id_product}">
                         <div class="img-box">
-                        <img src="../assets/${pr.product_picture}" alt="">
+                        <img src="../assets/product/${pr.product_picture}" alt="">
                         </div>
                         <div class="detail-box">
                         <h6>
@@ -77,14 +72,11 @@ function getAllProducts() {
                     addToCart(JSON.stringify(pr))
                 })
             }
-
-
         },
         error: function (xhr, ajaxOptions, thrownError) {
             console.log("what is the problem", thrownError)
         }
     });
-
 }
 
 getAllProducts();

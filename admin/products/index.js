@@ -13,7 +13,7 @@ function delateArticle(id) {
         cache: false,
         success: (res) => {
             console.log(res)
-            if (res.success) window.location.replace("../products/"); // Si success alors je rédirige vers la liste des produits
+            if (res.success) window.location.replace("../products/");
             else alert(res.error);
         },
         error: function (xhr, ajaxOptions, thrownError) {

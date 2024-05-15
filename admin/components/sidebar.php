@@ -2,12 +2,14 @@
 
     <!-- logo start -->
     <div class="logo">
-        <h4>HiDO Yeelo</h4>
+        <h4>
+            E-Audio-V
+        </h4>
     </div>
 
 
     <div class="logo-icon text-center">
-        <a href="../dashboard/" title="logo"><img src="../../assets/logo.png" alt="logo-icon"> </a>
+        <a href="../dashboard/" title="logo"><img src="../../assets/logo.png" alt="logo-icon" width="200"> </a>
     </div>
     <!-- //logo end -->
 
@@ -44,6 +46,12 @@
                 <a href="../users/">
                     <i class="fa fa-users"></i>
                     <span> Utilisateurs</span>
+                </a>
+            </li>
+            <li class="">
+                <a href="/project_e_commerce">
+                    <i class="fa fa-globe"></i>
+                    <span> Site Web</span>
                 </a>
             </li>
 

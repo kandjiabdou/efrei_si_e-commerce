@@ -13,7 +13,7 @@ if (localStorage.getItem("productCart") !== null) {
 
             let productDivImg = document.createElement("div")
             productDivImg.classList.add("box-product-img")
-            productDivImg.innerHTML = `<img src="../assets/${pr.product_picture}" />`
+            productDivImg.innerHTML = `<img src="../assets/product/${pr.product_picture}" />`
 
             productBox.appendChild(productDivImg)
 

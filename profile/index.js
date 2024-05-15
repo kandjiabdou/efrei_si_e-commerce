@@ -4,29 +4,10 @@ $("#firstname").val(user.firstname);
 $("#lastname").val(user.lastname);
 $("#email").val(user.email);
 $("#mypara").html(user.lastname);
-$("form").submit(event => {
-    event.preventDefault();
-    $.ajax({
-        url: "../php/profile.php",
-        type: "POST",
-        dataType: "json",
-        data: {
-            choisir: 'update',
-            user_id: user.id_user,
-            ancienpwd: $("ancienpwd").val(),
-            newpwd: $("newpwd").val(),
-            confirmpwd: $("confirmpwd").val()
-        },
-        success: (res) => {
-            if (res.success) {
-
-                alert(res.message);
-            } else {
-                alert(res.error);
-            }
-        }
-    });
-});
+$("#address").val(user.adresse);
+$("#city").val(user.ville);
+$("#code").val(user.code_postal);
+$('#avatar_user').attr('src', "/project_e_commerce/assets/avatar/" + user.image);
 
 
 function getOrderHistory(){
@@ -40,188 +21,6 @@ function getOrderHistory(){
         },
         success: (res) => {
             console.log(res)
-            /**
-             * {
-             *     "success": true,
-             *     "orders": [
-             *         {
-             *             "id_order": "17",
-             *             "date_order": "2023-08-20 19:04:22",
-             *             "statut": "0",
-             *             "id_user": "4",
-             *             "products": [
-             *                 {
-             *                     "quantity": "2",
-             *                     "id_product": "3",
-             *                     "id_order": "17",
-             *                     "product_name": "dfghj",
-             *                     "description": "sdfghjkl",
-             *                     "product_quantity": "18",
-             *                     "product_picture": "IMG-7819.JPG",
-             *                     "product_price": "1",
-             *                     "id_category": "1"
-             *                 },
-             *                 {
-             *                     "quantity": "1",
-             *                     "id_product": "4",
-             *                     "id_order": "17",
-             *                     "product_name": "dfghjk",
-             *                     "description": "tttttttttttttttttttttttttt",
-             *                     "product_quantity": "19",
-             *                     "product_picture": "IMG-7816.JPG",
-             *                     "product_price": "9",
-             *                     "id_category": "2"
-             *                 },
-             *                 {
-             *                     "quantity": "1",
-             *                     "id_product": "5",
-             *                     "id_order": "17",
-             *                     "product_name": "azerty",
-             *                     "description": "azerty",
-             *                     "product_quantity": "26",
-             *                     "product_picture": "IMG-7825.JPG",
-             *                     "product_price": "4",
-             *                     "id_category": "2"
-             *                 }
-             *             ]
-             *         },
-             *         {
-             *             "id_order": "18",
-             *             "date_order": "2023-08-20 23:05:16",
-             *             "statut": "0",
-             *             "id_user": "4",
-             *             "products": [
-             *                 {
-             *                     "quantity": "0",
-             *                     "id_product": "3",
-             *                     "id_order": "18",
-             *                     "product_name": "dfghj",
-             *                     "description": "sdfghjkl",
-             *                     "product_quantity": "18",
-             *                     "product_picture": "IMG-7819.JPG",
-             *                     "product_price": "1",
-             *                     "id_category": "1"
-             *                 },
-             *                 {
-             *                     "quantity": "0",
-             *                     "id_product": "4",
-             *                     "id_order": "18",
-             *                     "product_name": "dfghjk",
-             *                     "description": "tttttttttttttttttttttttttt",
-             *                     "product_quantity": "19",
-             *                     "product_picture": "IMG-7816.JPG",
-             *                     "product_price": "9",
-             *                     "id_category": "2"
-             *                 },
-             *                 {
-             *                     "quantity": "0",
-             *                     "id_product": "5",
-             *                     "id_order": "18",
-             *                     "product_name": "azerty",
-             *                     "description": "azerty",
-             *                     "product_quantity": "26",
-             *                     "product_picture": "IMG-7825.JPG",
-             *                     "product_price": "4",
-             *                     "id_category": "2"
-             *                 }
-             *             ]
-             *         },
-             *         {
-             *             "id_order": "19",
-             *             "date_order": "2023-08-20 23:05:18",
-             *             "statut": "0",
-             *             "id_user": "4",
-             *             "products": [
-             *                 {
-             *                     "quantity": "0",
-             *                     "id_product": "3",
-             *                     "id_order": "19",
-             *                     "product_name": "dfghj",
-             *                     "description": "sdfghjkl",
-             *                     "product_quantity": "18",
-             *                     "product_picture": "IMG-7819.JPG",
-             *                     "product_price": "1",
-             *                     "id_category": "1"
-             *                 },
-             *                 {
-             *                     "quantity": "0",
-             *                     "id_product": "4",
-             *                     "id_order": "19",
-             *                     "product_name": "dfghjk",
-             *                     "description": "tttttttttttttttttttttttttt",
-             *                     "product_quantity": "19",
-             *                     "product_picture": "IMG-7816.JPG",
-             *                     "product_price": "9",
-             *                     "id_category": "2"
-             *                 },
-             *                 {
-             *                     "quantity": "0",
-             *                     "id_product": "5",
-             *                     "id_order": "19",
-             *                     "product_name": "azerty",
-             *                     "description": "azerty",
-             *                     "product_quantity": "26",
-             *                     "product_picture": "IMG-7825.JPG",
-             *                     "product_price": "4",
-             *                     "id_category": "2"
-             *                 }
-             *             ]
-             *         },
-             *         {
-             *             "id_order": "20",
-             *             "date_order": "2023-08-24 18:51:38",
-             *             "statut": "0",
-             *             "id_user": "4",
-             *             "products": [
-             *                 {
-             *                     "quantity": "1111",
-             *                     "id_product": "3",
-             *                     "id_order": "20",
-             *                     "product_name": "dfghj",
-             *                     "description": "sdfghjkl",
-             *                     "product_quantity": "18",
-             *                     "product_picture": "IMG-7819.JPG",
-             *                     "product_price": "1",
-             *                     "id_category": "1"
-             *                 },
-             *                 {
-             *                     "quantity": "11111",
-             *                     "id_product": "4",
-             *                     "id_order": "20",
-             *                     "product_name": "dfghjk",
-             *                     "description": "tttttttttttttttttttttttttt",
-             *                     "product_quantity": "19",
-             *                     "product_picture": "IMG-7816.JPG",
-             *                     "product_price": "9",
-             *                     "id_category": "2"
-             *                 },
-             *                 {
-             *                     "quantity": "111",
-             *                     "id_product": "5",
-             *                     "id_order": "20",
-             *                     "product_name": "azerty",
-             *                     "description": "azerty",
-             *                     "product_quantity": "26",
-             *                     "product_picture": "IMG-7825.JPG",
-             *                     "product_price": "4",
-             *                     "id_category": "2"
-             *                 },
-             *                 {
-             *                     "quantity": "2",
-             *                     "id_product": "6",
-             *                     "id_order": "20",
-             *                     "product_name": "Femme sdfgh",
-             *                     "description": "tenue pour ldfges céremonies",
-             *                     "product_quantity": "4",
-             *                     "product_picture": "IMG-7817.JPG",
-             *                     "product_price": "17",
-             *                     "id_category": "1"
-             *                 }
-             *             ]
-             *         }
-             *     ]
-             * }
-             */
 
             if (res.success) {
                 let orders = res.orders;
@@ -236,7 +35,7 @@ function getOrderHistory(){
                         let product = order.products[j];
                         orderBox += `<div class="order-product">
                             <div class="order-product-img">
-                                <img src="../assets/${product.product_picture}" alt="">
+                                <img src="../assets/product/${product.product_picture}" alt="">
                             </div>
                             <div class="order-product-info">
                                 <h6>${product.product_name}</h6>
@@ -264,3 +63,11 @@ if (localStorage.getItem("productCart") !== null) {
         document.getElementById('cart-badge').innerHTML = productCart.length.toString();
     }
 }
+
+$('.toggle-password').click(function() {
+    // Basculer l'icône
+    $(this).find('i').toggleClass('fa-eye fa-eye-slash');
+    // Basculer le type du champ de saisie associé
+    let input = $(this).closest('.input-group').find('.password');
+    input.attr('type', input.attr('type') === 'password' ? 'text' : 'password');
+});

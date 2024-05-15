@@ -29,7 +29,7 @@ include_once ("../components/admin_header.php");
             <div class="row">
                 <div class="card" style="width: 100%;">
                     <div class="card-body">
-                        <form>
+                        <form method="POST">
                             <div class="inputBox">
 
                                 <label for="Nom">Titre</label>
@@ -43,7 +43,7 @@ include_once ("../components/admin_header.php");
                             </div>
                             <div class="inputBox">
                                 <label for="picture">Image</label><br>
-                                <img id="picture" class="img-fluid" alt="picture" src="/project_e_commerce/assets/product/default_product.png" />
+                                <img id="picture" class="img-fluid"  alt="produit" src="/project_e_commerce/assets/product/default_product.png" />
                                 <input type="file" id="image" accept="image/*" class="form-control input-style">
                             </div>
 
@@ -59,7 +59,7 @@ include_once ("../components/admin_header.php");
 
                             <div class="inputBox">
                                 <label for="reduction">Réduction</label>
-                                <input type="number" id="reduction" class="form-control input-style">
+                                <input type="number" id="reduction" required class="form-control input-style" min="0" value="0">
                             </div>
 
                             <div class="inputBox">
@@ -68,9 +68,6 @@ include_once ("../components/admin_header.php");
                                     <option>---</option>
                                 </select>
                             </div>
-
-
-
 
                             <input type="submit" value="Envoyer">
                             <a href="../products/">Annuler</a>

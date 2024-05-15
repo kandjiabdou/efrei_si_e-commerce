@@ -34,7 +34,7 @@ function upload($file)
     if (isset($file["image"]["name"])) {
         $filename = $file["image"]["name"];
 
-        $location = __DIR__ . "/../../assets/$filename";
+        $location = __DIR__ . "/../../assets/product/$filename";
         $extension = pathinfo($location, PATHINFO_EXTENSION);
         $extension = strtolower($extension);
 

@@ -15,7 +15,6 @@ $stmt = $bdd->prepare("SELECT * FROM users WHERE email = ?");
 $stmt->execute([$_POST["email"]]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-
 if ($user && password_verify($_POST["pwd"], $user["pwd"])) { // Si l'authentification est réçu, je demarre une session
     session_start();
     $_SESSION["connected"] = true; // l'utilisateur est connecté 
